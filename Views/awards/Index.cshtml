@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MIS4200_Team13.Models.award>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Recognition Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.awards)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognizer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognized)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognitionDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.awards)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recognizer.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recognized.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recognitionDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.awardID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.awardID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.awardID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,72 @@
+﻿@model MIS4200_Team13.Models.Profile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_DateHried)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_DateHried)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_JobDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_JobDescription)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MIS4200_Team13.Models.Profile>
+
+@{
+    ViewBag.Title = "Employee Profile";
+}
+
+<h2>Employee Profile</h2>
+
+<p>
+    @Html.ActionLink("Create New Profile", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_DateHried)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_JobDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_DateHried)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_JobDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.profileID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.profileID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.profileID })
+        </td>
+    </tr>
+}
+
+</table>
