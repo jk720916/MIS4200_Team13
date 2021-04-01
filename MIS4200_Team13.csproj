@@ -178,6 +178,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\profileDatasController.cs" />
+    <Compile Include="Controllers\ScoreboardsController.cs" />
     <Compile Include="DAL\MIS4200Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +189,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\profileData.cs" />
+    <Compile Include="Models\Scoreboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -202,6 +204,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\centicupdated.png" />
     <Content Include="Images\Centric Core Values 2.jpg" />
+    <Content Include="Images\centric-logo-color.png" />
     <Content Include="Images\Centric_Consulting-800x400.jpg" />
     <Content Include="Images\diversity-inclusion-overlapping.jpg" />
     <Content Include="Images\Facebook.PNG" />
@@ -291,6 +294,11 @@
     <Content Include="Views\awards\Details.cshtml" />
     <Content Include="Views\awards\Edit.cshtml" />
     <Content Include="Views\awards\Index.cshtml" />
+    <Content Include="Views\Scoreboards\Create.cshtml" />
+    <Content Include="Views\Scoreboards\Delete.cshtml" />
+    <Content Include="Views\Scoreboards\Details.cshtml" />
+    <Content Include="Views\Scoreboards\Edit.cshtml" />
+    <Content Include="Views\Scoreboards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

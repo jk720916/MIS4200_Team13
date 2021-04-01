@@ -19,7 +19,9 @@ namespace MIS4200_Team13.Controllers
         // GET: profileDatas
         public ActionResult Index()
         {
-            return View(db.profileData.ToList());
+            var newProfileData = db.profileData.Include(p => p.award).Where(q => q.ID == q.award.);
+            return View(newProfileData.ToList());
+            
         }
 
         // GET: profileDatas/Details/5
@@ -38,14 +40,17 @@ namespace MIS4200_Team13.Controllers
         }
 
         // GET: profileDatas/Create
+        [Authorize]
         public ActionResult Create()
         {
+           //ViewBag.title1 = new SelectList(db.profileData, "ID", "Setroles");//
             return View();
         }
 
         // POST: profileDatas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,lastName,firstName,businessUnit,title,dateHired,phoneNumber,email")] profileData profileData)
@@ -89,7 +94,7 @@ namespace MIS4200_Team13.Controllers
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
             profileData profileData1 = db.profileData.Find(id);
-            bool isAdmin = profileData.title == profileData.title.admin;
+            bool isAdmin = profileData.title == profileData.title1.admin;
 
 
             if (memberId == id || isAdmin)
@@ -101,7 +106,7 @@ namespace MIS4200_Team13.Controllers
                 return View("notAuthorized");
             }
 
-            //return View(profileData);
+           // return View(profileData);
         }
 
         // POST: profileDatas/Edit/5
@@ -144,9 +149,8 @@ namespace MIS4200_Team13.Controllers
             }
             else
             {
-                return View("notAuthorizedDelete");
+               return View("notAuthorizedDelete");
             }
-            //return View(profileData);
         }
 
         // POST: profileDatas/Delete/5

@@ -32,10 +32,14 @@
         <th>
             @Html.DisplayNameFor(model => model.email)
         </th>
+        <th>
+            awardCount
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.lastName)
@@ -58,6 +62,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.email)
         </td>
+        <td>
+            @{
+                var awardCount = item.award.Count();
+            } 
+            @awardCount
+         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |

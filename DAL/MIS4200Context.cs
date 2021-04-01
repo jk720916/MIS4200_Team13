@@ -16,6 +16,7 @@ namespace MIS4200_Team13.DAL
         }
         public DbSet<profileData> profileData { get; set; }
         public DbSet<award> award { get; set; }
+        public DbSet<Scoreboard> scoreboard { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();  // note: this is all one line!

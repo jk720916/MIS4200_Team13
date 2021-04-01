@@ -27,10 +27,21 @@ namespace MIS4200_Team13.Models
         [Display(Name = "Business Unit")]
         [Required(ErrorMessage = "A business unit is required")]
         public string businessUnit { get; set; }
-        [Display(Name = "Title")]
-        [Required(ErrorMessage = "A title is required")]
-        public string title { get; set; }
 
+        private string roles1;
+
+        public string Getroles()
+        {
+            return roles1;
+        }
+
+        public void Setroles(string value)
+        {
+            roles1 = value;
+        }
+
+        //public enum roles
+        //{enter roles here 8-16 in book}
         [Display(Name = "Date Hired")]
         [Required(ErrorMessage = "Date hired is required")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
@@ -45,8 +56,18 @@ namespace MIS4200_Team13.Models
         [Required(ErrorMessage = "Email is required ie: username@domain.com")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
-        public ICollection<award> award { get; set; }
+
+        public enum title1
+        { 
+            admin = 0,
+            employee = 1,
         
+        }
+        //added employee to enum
+        // trying to add dropdown to profile creation 
+        public ICollection<award> award { get; set; }
+        public title1 title { get; internal set; }
+        public ICollection<Scoreboard> Scoreboard { get; set; }
     }
     
   

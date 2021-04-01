@@ -1,0 +1,18 @@
+﻿@model MIS4200_Team13.Models.Scoreboard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Scoreboard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.scoreBoardID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

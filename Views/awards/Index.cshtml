@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Recognition Index</h2>
+<h2 style="color:darkorange">Employee Recognition</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Recogition", "Create")
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.awards)
@@ -32,10 +32,10 @@
             @Html.DisplayFor(modelItem => item.awards)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Recognizer.fullName)
+            @Html.DisplayFor(modelItem => item.Recognizer1.fullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Recognized.fullName)
+            @Html.DisplayFor(modelItem => item.Recognized1.fullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.recognitionDate)

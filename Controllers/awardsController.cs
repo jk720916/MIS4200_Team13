@@ -18,7 +18,9 @@ namespace MIS4200_Team13.Controllers
         // GET: awards
         public ActionResult Index()
         {
-            return View(db.award.Include(a=>a.Recognized).Include(b=>b.Recognizer).ToList());
+           //return View(db.award.Include(a=>a.Recognized).Include(b=>b.Recognizer).ToList()); //reconized doesnt have a path 
+            return View(db.award.ToList());
+            //comment above out and ask luce what this line is 
         }
 
         // GET: awards/Details/5
@@ -37,6 +39,7 @@ namespace MIS4200_Team13.Controllers
         }
 
         // GET: awards/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
@@ -65,8 +68,11 @@ namespace MIS4200_Team13.Controllers
         }
 
         // GET: awards/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
+            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
+            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -92,10 +98,13 @@ namespace MIS4200_Team13.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
+            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName");
             return View(award);
         }
 
         // GET: awards/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

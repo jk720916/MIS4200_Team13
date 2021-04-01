@@ -17,16 +17,20 @@ namespace MIS4200_Team13.Models
         [Required(ErrorMessage = "A recognizer is required")]
         public Guid recognizer { get; set; }
         [ForeignKey("recognizer")]
-        public virtual profileData Recognizer { get; set; }
+        public virtual profileData Recognizer1 { get; set; }
         [Display(Name = "Recognized")]
         [Required(ErrorMessage = "A recognized is required")]
         public Guid recognized { get; set; }
         [ForeignKey("recognized")]
-        public virtual profileData Recognized { get; set; }
+        public virtual profileData Recognized1 { get; set; }
         [Display(Name = "Date")]
         [Required(ErrorMessage = "A date is required")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime recognitionDate { get; set; }
+        [Display(Name = "Description")]
+        public string description { get; set; }
+       public ICollection<Scoreboard> Scoreboard { get; set; }
+        // get rid of scoreboard connections
 
         //public Guid ID { get; set; }
 
