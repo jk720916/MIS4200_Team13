@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using Xunit;
@@ -48,7 +49,7 @@ namespace MIS4200_Team13.Models
         public DateTime dateHired { get; set; }
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Phone Number is required ie:555-555-5555")]
-       [DataType(DataType.PhoneNumber)]
+        [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
                    ErrorMessage = "Entered phone format is not valid.")]
         public string phoneNumber { get; set; }
@@ -58,17 +59,21 @@ namespace MIS4200_Team13.Models
         public string email { get; set; }
 
         public enum title1
-        { 
+        {
             admin = 0,
             employee = 1,
-        
+
         }
         //added employee to enum
         // trying to add dropdown to profile creation 
-        public ICollection<award> award { get; set; }
+        [ForeignKey("recognizer")]
+        public ICollection<award> awardsGiven { get; set; }
+
+        [ForeignKey("recognized")]
+        public ICollection<award> awardsReceived { get; set; }
         public title1 title { get; internal set; }
         public ICollection<Scoreboard> Scoreboard { get; set; }
     }
-    
-  
+
+
 }

@@ -19,7 +19,8 @@ namespace MIS4200_Team13.Controllers
         // GET: profileDatas
         public ActionResult Index()
         {
-            var newProfileData = db.profileData.Include(p => p.award).Where(q => q.ID == q.award.);
+            //   var newProfileData = db.profileData.Include(p => p.award).Where(q => q.ID == q.award.);
+            var newProfileData = db.profileData.Include(p => p.awardsReceived);
             return View(newProfileData.ToList());
             
         }
