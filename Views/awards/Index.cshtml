@@ -23,29 +23,37 @@
         <th>
             @Html.DisplayNameFor(model => model.recognitionDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.awards)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Recognizer1.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Recognized1.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.recognitionDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.awardID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.awardID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.awardID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.awards)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Recognizer1.fullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Recognized1.fullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.recognitionDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.awardID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.awardID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.awardID })
+    </td>
+</tr>
+    }
 
 </table>
+

@@ -18,9 +18,8 @@ namespace MIS4200_Team13.Controllers
         // GET: awards
         public ActionResult Index()
         {
-           //return View(db.award.Include(a=>a.Recognized).Include(b=>b.Recognizer).ToList()); //reconized doesnt have a path 
-            return View(db.award.ToList());
-            //comment above out and ask luce what this line is 
+            var award = db.award.Include(a => a.Recognized1).Include(a => a.Recognizer1);
+            return View(award.ToList());
         }
 
         // GET: awards/Details/5
@@ -42,8 +41,8 @@ namespace MIS4200_Team13.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
             ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName");
+            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
             return View();
         }
 
@@ -52,7 +51,7 @@ namespace MIS4200_Team13.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "awardID,awards,recognizer,recognized,recognitionDate")] award award)
+        public ActionResult Create([Bind(Include = "awardID,awards,recognizer,recognized,recognitionDate,description")] award award)
         {
             if (ModelState.IsValid)
             {
@@ -61,9 +60,8 @@ namespace MIS4200_Team13.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName");
-
+            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName", award.recognized);
+            ViewBag.recognizer = new SelectList(db.profileData, "ID", "lastName", award.recognizer);
             return View(award);
         }
 
@@ -71,8 +69,6 @@ namespace MIS4200_Team13.Controllers
         [Authorize]
         public ActionResult Edit(int? id)
         {
-            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,6 +78,8 @@ namespace MIS4200_Team13.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName", award.recognized);
+            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName", award.recognizer);
             return View(award);
         }
 
@@ -90,7 +88,7 @@ namespace MIS4200_Team13.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "awardID,awards,recognizer,recognized,recognitionDate")] award award)
+        public ActionResult Edit([Bind(Include = "awardID,awards,recognizer,recognized,recognitionDate,description")] award award)
         {
             if (ModelState.IsValid)
             {
@@ -98,8 +96,8 @@ namespace MIS4200_Team13.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName");
+            ViewBag.recognized = new SelectList(db.profileData, "ID", "fullName", award.recognized);
+            ViewBag.recognizer = new SelectList(db.profileData, "ID", "fullName", award.recognizer);
             return View(award);
         }
 
