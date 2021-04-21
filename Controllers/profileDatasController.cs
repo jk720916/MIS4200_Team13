@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using MIS4200_Team13.DAL;
 using MIS4200_Team13.Models;
+using PagedList;   
+
 
 namespace MIS4200_Team13.Controllers
 {
@@ -17,13 +19,13 @@ namespace MIS4200_Team13.Controllers
         private MIS4200Context db = new MIS4200Context();
 
         // GET: profileDatas
-        public ActionResult Index()
-        {
+        //public ActionResult Index()
+        //{
             //   var newProfileData = db.profileData.Include(p => p.award).Where(q => q.ID == q.award.);
-            var newProfileData = db.profileData.Include(p => p.awardsReceived);
-            return View(newProfileData.ToList());
+          //  var newProfileData = db.profileData.Include(p => p.awardsReceived);
+            //return View(newProfileData.ToList());
             
-        }
+        //}
 
         // GET: profileDatas/Details/5
         public ActionResult Details(Guid? id)
@@ -109,6 +111,27 @@ namespace MIS4200_Team13.Controllers
 
            // return View(profileData);
         }
+
+        public ActionResult Index(int? page, string searchString)
+        {
+        
+            int pgSize = 10;
+            int pageNumber = (page ?? 1);
+            // var profileData = from r in db.profileData select r;
+            var profileData = db.profileData.Include(p => p.awardsReceived);
+            profileData = db.profileData.OrderBy(r => r.lastName).ThenBy(r => r.firstName); ;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                profileData = profileData.Where(r => r.lastName.Contains(searchString) || r.firstName.Contains(searchString));
+            }
+            var profileDataList = profileData.ToPagedList(pageNumber, pgSize);
+            return View(profileDataList);
+        }
+
+
+
+
 
         // POST: profileDatas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
